@@ -4,6 +4,7 @@ import LoadingPage from "./LoadingPage.js"
 
 import Actions from './Actions.js'
 
+// row permet de créer une ligne de tableau avec les différentes information d'une facture 
 const row = (bill) => {
   return (`
     <tr>
@@ -19,8 +20,9 @@ const row = (bill) => {
     `)
   }
 
+//rows permet de creer un tableau ou chaque ligne représente une facture créer avec la fonction row donc chaque ligne présente toutes les info d'une facture, intiallement il n'y avait pas de fonction permettant de trier les factures dans un ordre antichronologique nous la rajoutons avec data.sort((a, b) => new Date(b.date) - new Date(a.date))
 const rows = (data) => {
-  return (data && data.length) ? data.map(bill => row(bill)).join("") : ""
+  return (data && data.length) ? data.sort((a, b) => new Date(b.date) - new Date(a.date)).map(bill => row(bill)).join("") : ""
 }
 
 export default ({ data: bills, loading, error }) => {
