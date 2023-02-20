@@ -48,3 +48,4 @@ describe('Given I am connected', () => {
     })
   })
 })
+// est ce qu'il faudrait que je refasse le même mais pour user ? 
