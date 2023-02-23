@@ -13,15 +13,6 @@ import userEvent from '@testing-library/user-event'
 
 jest.mock('../app/store', () => mockStore)
 
-// beforeEach(() => {
-//   Object.defineProperty(window, 'localStorage', { value: localStorageMock })
-//   window.localStorage.setItem(
-//     'user',
-//     JSON.stringify({
-//       type: 'Employee'
-//     })
-//   )
-// })
 
 describe('Given I am connected as an employee', () => {
   describe('When I am on New Bills Page', () => {
@@ -122,105 +113,6 @@ describe('Given I am connected as an employee', () => {
     })
   })
 })
-
-// // Test d'intégration POST
-
-// /**
-//  * @jest-environment jsdom
-//  */
-
-// import { fireEvent, screen, waitFor } from '@testing-library/dom'
-// import NewBillUI from '../views/NewBillUI.js'
-// import NewBill from '../containers/NewBill.js'
-// import '@testing-library/jest-dom'
-// import router from '../app/Router.js'
-// import { ROUTES, ROUTES_PATH } from '../constants/routes.js'
-// import { localStorageMock } from '../__mocks__/localStorage.js'
-// import mockStore from '../__mocks__/store.js'
-
-// describe('Given I am connected as an employee', () => {
-//   afterEach(() => {
-//     document.body.innerHTML = ''
-//   })
-
-//   beforeEach(() => {
-//     Object.defineProperty(window, 'localStorage', { value: localStorageMock })
-//     window.localStorage.setItem(
-//       'user',
-//       JSON.stringify({
-//         type: 'Employee'
-//       })
-//     )
-//   })
-
-//   describe('When I am on NewBill Page', () => {
-//     test('Then mail-icon should be highlighted', async () => {
-//       const root = document.createElement('div')
-//       root.setAttribute('id', 'root')
-//       document.body.append(root)
-
-//       router()
-//       window.onNavigate(ROUTES_PATH.NewBill)
-//       await waitFor(() => screen.getByTestId('icon-mail'))
-//       const mailIcon = screen.getByTestId('icon-mail')
-//       expect(mailIcon).toHaveClass('active-icon')
-//     })
-
-//     describe('When a file is uploaded in accepted format  jpeg, jpg, png)', () => {
-//       test('Then file should be updated after uploaded', () => {
-//         document.body.innerHTML = NewBillUI()
-
-//         const newBill = new NewBill({ document, onNavigate, store: mockStore, localStorage: window.localStorage })
-
-//         const handleChangeFile = jest.spyOn(newBill, 'handleChangeFile')
-
-//         const input = screen.getByTestId('file')
-//         const errorDom = screen.getByTestId('error-extension')
-//         input.addEventListener('change', handleChangeFile)
-//         fireEvent.change(input, {
-//           target: {
-//             files: [new File(['body'], 'notebill.jpg', { type: 'image/jpeg' })]
-//           }
-//         })
-//         console.log(input, '_______')
-//         console.log(input.files[0].name, '(((((((((')
-
-//         expect(handleChangeFile).toBeCalled()
-//         expect(input.files[0].name).toBe('notebill.jpg')
-//         expect(errorDom.textContent).toBe()
-//       })
-//     })
-
-//     describe('When user submits form correctly', () => {
-//       test('Then a bill is created', () => {
-//         document.body.innerHTML = NewBillUI()
-
-//         const newBill = new NewBill({ document, onNavigate, store: mockStore, localStorage: window.localStorage })
-
-//         const updateBill = jest.spyOn(newBill, 'updateBill')
-
-//         const form = screen.getByTestId('form-new-bill')
-//         fireEvent.submit(form)
-
-//         expect(updateBill).toHaveBeenCalledTimes(1)
-//       })
-//     })
-
-//     describe('When i submit a bill form', () => {
-//       test('Then handleSubmit function should be called', () => {
-//         document.body.innerHTML = NewBillUI()
-//         const newBill = new NewBill({ document, onNavigate, store: mockStore, localStorage: window.localStorage })
-
-//         const formNewBill = screen.getByTestId('form-new-bill')
-//         const handleSubmit = jest.spyOn(newBill, 'handleSubmit')
-
-//         formNewBill.addEventListener('submit', handleSubmit)
-
-//         fireEvent.submit(formNewBill)
-
-//         expect(handleSubmit).toHaveBeenCalled()
-//       })
-//     })
 
 // Test d'intégration POST
 describe('When a valid bill is submitted', () => {

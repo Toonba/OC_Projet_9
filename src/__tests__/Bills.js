@@ -101,7 +101,6 @@ describe('Given I am connected as an employee', () => {
       expect($.fn.modal).toHaveBeenCalled()
     })
   })
-
 })
 
 // test d'intégration GET

@@ -139,6 +139,7 @@ export default class {
       this.counter++
     }
 
+    // Ne pas commenter pour que l'application fonctionne comme souhaité
     bills.forEach((bill) => {
       $(`#open-bill${bill.id}`)
         .off('click')
@@ -146,6 +147,11 @@ export default class {
           this.handleEditTicket(e, bill, bills)
         })
     })
+
+    // Ne pas commenter pour récreer le bug et pouvoir montrer comment utiliser le debugger
+    // bills.forEach(bill => {
+    //   $(`#open-bill${bill.id}`).click((e) => this.handleEditTicket(e, bill, bills))
+    // })
 
     return bills
   }

@@ -23,8 +23,8 @@ export default class NewBill {
     const validExtension = ['jpg', 'jpeg', 'png'].includes(fileExtension.toLowerCase())
 
     if (!validExtension) {
-      file.value = ''
       window.alert('Wrong file format. Accepted formats: .jpg, .jpeg, .png')
+      this.document.querySelector(`input[data-testid="file"]`).value = ''
       return
     }
     const formData = new FormData()
