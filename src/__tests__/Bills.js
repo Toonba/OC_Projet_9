@@ -101,6 +101,7 @@ describe('Given I am connected as an employee', () => {
       expect($.fn.modal).toHaveBeenCalled()
     })
   })
+
 })
 
 // test d'intégration GET
@@ -114,7 +115,7 @@ describe('Given I am a user connected as Employee', () => {
       router()
       window.onNavigate(ROUTES_PATH.Bills)
       await waitFor(() => screen.getByText('Mes notes de frais'))
-      const transportBill = await screen.getByText('Transports')
+      const transportBill = screen.getByText('Transports')
       expect(transportBill).toBeTruthy()
     })
     describe('When an error occurs on API', () => {
