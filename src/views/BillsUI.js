@@ -21,21 +21,10 @@ const row = (bill) => {
 
 // fonction de comparaison pour trier les objets par date
 function compareDate(a, b) {
-  const dateA = new Date(a.date)
-  const dateB = new Date(b.date)
-  return dateA - dateB
+  return b.dateNotConverted - a.dateNotConverted
 }
 
 const sortBillsByDate = (bills) => {
-  bills.forEach((bill) => {
-    const dateTest = new Date(bill.date)
-    console.log('*********DEBUT**********')
-    console.log(bill)
-    console.log(bill.date)
-    console.log(typeof bill.date)
-    console.log(dateTest)
-    console.log('*********FIN***********$')
-  })
   const sortedBills = bills.sort(compareDate)
   return sortedBills
 }
@@ -101,3 +90,4 @@ export default ({ data: bills, loading, error }) => {
       ${modal()}
     </div>`
 }
+

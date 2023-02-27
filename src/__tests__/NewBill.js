@@ -13,7 +13,6 @@ import userEvent from '@testing-library/user-event'
 
 jest.mock('../app/store', () => mockStore)
 
-
 describe('Given I am connected as an employee', () => {
   describe('When I am on New Bills Page', () => {
     beforeEach(() => {
