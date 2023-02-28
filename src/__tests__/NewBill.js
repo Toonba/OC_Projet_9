@@ -114,28 +114,64 @@ describe('Given I am connected as an employee', () => {
 })
 
 // Test d'intégration POST
-describe('When a valid bill is submitted', () => {
-  test('Then a new bill is generated', async () => {
-    const storeSpy = jest.spyOn(mockStore, 'bills')
+describe('Given I am a user connected as Employee', () => {
+  describe('When I submit the form completed', () => {
+    test('Then the bill is created', async () => {
+      document.body.innerHTML = NewBillUI()
 
-    const newBill = {
-      id: 'X2w33aqa96e6s2v2696z6f2',
-      vat: '80',
-      fileUrl: 'https://www.parisinfo.com/var/otcp/sites/images/media/1.-photos/03.-hebergement-630-x-405/hotel-enseigne-neon-630x405-c-thinkstock/31513-1-fre-FR/Hotel-enseigne-neon-630x405-C-Thinkstock.jpg',
-      status: 'pending',
-      type: 'Hôtel et logement',
-      commentary: 'Hotel Paris Info',
-      name: 'encore',
-      fileName: 'preview-parisinfo-free-201801-pdf-1.jpg',
-      date: '2023-04-04',
-      amount: 800,
-      commentAdmin: 'ok',
-      email: 'montest@gmail.com',
-      pct: 20
-    }
+      const onNavigate = (pathname) => {
+        document.body.innerHTML = ROUTES({ pathname })
+      }
 
-    await mockStore.bills().create(newBill)
+      Object.defineProperty(window, 'localStorage', { value: localStorageMock })
+      window.localStorage.setItem(
+        'user',
+        JSON.stringify({
+          type: 'Employee'
+        })
+      )
 
-    expect(storeSpy).toHaveBeenCalledTimes(1)
+      const newBill = new NewBill({
+        document,
+        onNavigate,
+        store: null,
+        localStorage: window.localStorage
+      })
+
+      const validBill = {
+        type: 'Restaurants et bars',
+        name: 'Vol Paris Londres',
+        date: '2022-02-15',
+        amount: 200,
+        vat: 70,
+        pct: 30,
+        commentary: 'Commentary',
+        fileUrl: '../img/0.jpg',
+        fileName: 'test.jpg',
+        status: 'pending'
+      }
+
+      // Load the values in fields
+      screen.getByTestId('expense-type').value = validBill.type
+      screen.getByTestId('expense-name').value = validBill.name
+      screen.getByTestId('datepicker').value = validBill.date
+      screen.getByTestId('amount').value = validBill.amount
+      screen.getByTestId('vat').value = validBill.vat
+      screen.getByTestId('pct').value = validBill.pct
+      screen.getByTestId('commentary').value = validBill.commentary
+
+      newBill.fileName = validBill.fileName
+      newBill.fileUrl = validBill.fileUrl
+
+      newBill.updateBill = jest.fn()
+      const handleSubmit = jest.fn((e) => newBill.handleSubmit(e))
+
+      const form = screen.getByTestId('form-new-bill')
+      form.addEventListener('submit', handleSubmit)
+      fireEvent.submit(form)
+
+      expect(handleSubmit).toHaveBeenCalled()
+      expect(newBill.updateBill).toHaveBeenCalled()
+    })
   })
 })

@@ -21,7 +21,9 @@ const row = (bill) => {
 
 // fonction de comparaison pour trier les objets par date
 function compareDate(a, b) {
-  return b.dateNotConverted - a.dateNotConverted
+  const dateA = new Date(a.dateNotConverted)
+  const dateB = new Date(b.dateNotConverted)
+  return dateB - dateA
 }
 
 const sortBillsByDate = (bills) => {
@@ -90,4 +92,3 @@ export default ({ data: bills, loading, error }) => {
       ${modal()}
     </div>`
 }
-
