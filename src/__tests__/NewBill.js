@@ -77,6 +77,7 @@ describe('Given I am connected as an employee', () => {
         userEvent.upload(inputFile, file)
         expect(handleChangeFile).toHaveBeenCalled()
         expect(window.alert).toHaveBeenCalled
+        expect(inputFile.value.length).toBe(0)
       })
     })
   })
@@ -172,6 +173,40 @@ describe('Given I am a user connected as Employee', () => {
 
       expect(handleSubmit).toHaveBeenCalled()
       expect(newBill.updateBill).toHaveBeenCalled()
+    })
+    test('fetches error from an API and fails with 500 error', async () => {
+      jest.spyOn(mockStore, 'bills')
+      jest.spyOn(console, 'error').mockImplementation(() => {}) // Prevent Console.error jest error
+
+      Object.defineProperty(window, 'localStorage', { value: localStorageMock })
+      Object.defineProperty(window, 'location', { value: { hash: ROUTES_PATH['NewBill'] } })
+
+      window.localStorage.setItem('user', JSON.stringify({ type: 'Employee' }))
+      const root = document.createElement('div')
+      root.setAttribute('id', 'root')
+      document.body.append(root)
+      router()
+
+      const onNavigate = (pathname) => {
+        document.body.innerHTML = ROUTES({ pathname })
+      }
+
+      mockStore.bills.mockImplementationOnce(() => {
+        return {
+          update: () => {
+            return Promise.reject(new Error('Erreur 500'))
+          }
+        }
+      })
+      const newBill = new NewBill({ document, onNavigate, store: mockStore, localStorage: window.localStorage })
+
+      // Submit form
+      const form = screen.getByTestId('form-new-bill')
+      const handleSubmit = jest.fn((e) => newBill.handleSubmit(e))
+      form.addEventListener('submit', handleSubmit)
+      fireEvent.submit(form)
+      await new Promise(process.nextTick)
+      expect(console.error).toBeCalled()
     })
   })
 })

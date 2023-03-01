@@ -149,7 +149,7 @@ export default class {
     })
 
     // Ne pas commenter pour récreer le bug et pouvoir montrer comment utiliser le debugger
-    // bills.forEach(bill => {
+    // bills.forEach((bill) => {
     //   $(`#open-bill${bill.id}`).click((e) => this.handleEditTicket(e, bill, bills))
     // })
 
