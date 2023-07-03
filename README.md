@@ -4,7 +4,7 @@ For this project we are working on a new feature for an app called billed that a
 Code of this feature has been almost entierly done, our job is to test what has been done and made the correction if necessary. 
 We used Jest as testing library. 
 
-Below you will find many details (in french) on step needed to check what has been done 
+Below you will find many details on step needed to check what has been done 
 
 
 ## Project Architecture:
