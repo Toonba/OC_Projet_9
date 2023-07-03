@@ -1,94 +1,63 @@
+# OC_Projet_9 : Debug and test an HR SaaS 
 
-## L'architecture du projet :
-Ce projet, dit frontend, est connecté à un service API backend que vous devez aussi lancer en local.
+For this project we are working on a new feature for an app called billed that allow Employee to create new bill and HR to accept or deny these bill. 
+Code of this feature has been almost entierly done, our job is to test what has been done and made the correction if necessary. 
+We used Jest as testing library. 
 
-Le projet backend se trouve ici: https://github.com/OpenClassrooms-Student-Center/Billed-app-FR-back
-
-## Organiser son espace de travail :
-Pour une bonne organization, vous pouvez créer un dossier bill-app dans lequel vous allez cloner le projet backend et par la suite, le projet frontend:
-
-Clonez le projet backend dans le dossier bill-app :
-```
-$ git clone https://github.com/OpenClassrooms-Student-Center/Billed-app-FR-Back.git
-```
-
-```
-bill-app/
-   - Billed-app-FR-Back
-```
-
-Clonez le projet frontend dans le dossier bill-app :
-```
-$ git clone https://github.com/OpenClassrooms-Student-Center/Billed-app-FR-Front.git
-```
-
-```
-bill-app/
-   - Billed-app-FR-Back
-   - Billed-app-FR-Front
-```
-
-## Comment lancer l'application en local ?
-
-### étape 1 - Lancer le backend :
-
-Suivez les indications dans le README du projet backend.
-
-### étape 2 - Lancer le frontend :
-
-Allez au repo cloné :
-```
-$ cd Billed-app-FR-Front
-```
-
-Installez les packages npm (décrits dans `package.json`) :
-```
-$ npm install
-```
-
-Installez live-server pour lancer un serveur local :
-```
-$ npm install -g live-server
-```
-
-Lancez l'application :
-```
-$ live-server
-```
-
-Puis allez à l'adresse : `http://127.0.0.1:8080/`
+Below you will find many details (in french) on step needed to check what has been done 
 
 
-## Comment lancer tous les tests en local avec Jest ?
+## Project Architecture:
+This frontend project is connected to a backend API service, which you also need to run locally.
 
-```
-$ npm run test
-```
+The backend project can be found here: https://github.com/OpenClassrooms-Student-Center/Billed-app-FR-back
 
-## Comment lancer un seul test ?
+## Setting up your workspace:
+For proper organization, you can create a bill-app folder where you'll clone both the backend and frontend projects:
 
-Installez jest-cli :
+Clone the backend project into the bill-app folder:
 
-```
-$npm i -g jest-cli
-$jest src/__tests__/your_test_file.js
-```
+`$ git clone https://github.com/OpenClassrooms-Student-Center/Billed-app-FR-Back.git` 
 
-## Comment voir la couverture de test ?
+`$ git clone https://github.com/OpenClassrooms-Student-Center/Billed-app-FR-Front.git`
 
-`http://127.0.0.1:8080/coverage/lcov-report/`
+## How to run the application locally?
+### Step 1 - Run the backend:
+Follow the instructions in the backend project's README.
 
-## Comptes et utilisateurs :
+### Step 2 - Run the frontend:
+Go to the cloned frontend repository:
 
-Vous pouvez vous connecter en utilisant les comptes:
+`$ cd Billed-app-FR-Front`
 
-### administrateur : 
-```
-utilisateur : admin@test.tld 
-mot de passe : admin
-```
-### employé :
-```
-utilisateur : employee@test.tld
-mot de passe : employee
-```
+Install the npm packages (described in package.json):
+
+`$ npm install`
+
+Install live-server to launch a local server:
+
+`$ npm install -g live-server`
+
+Launch the application: 
+
+`$ live-server`
+
+Then go to the address: http://127.0.0.1:8080/
+
+## How to run all tests locally with Jest?
+
+## How to view the test coverage?
+Go to: http://127.0.0.1:8080/coverage/lcov-report/
+
+## Accounts and Users:
+You can sign in using the following accounts:
+
+### Administrator:
+User: admin@test.tld
+Password: admin
+
+### Employee:
+User: employee@test.tld
+Password: employee
+
+
